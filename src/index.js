@@ -7,6 +7,7 @@ import ArticleList from './components/ArticleList';
 import ArticleDetails from './components/ArticleDetails';
 import AddArticle from './components/AddArticle';
 import NotFound from './components/NotFound';
+import './styles/index.css';
 const router = createBrowserRouter([
   { path: "/", element: <ArticleList /> },
   { path: "/article/:id", element: <ArticleDetails /> },

@@ -1,0 +1,28 @@
+/* Nav.css */
+.navigation-panel {
+    background-color: #282a36;
+    padding: 10px 0;
+  }
+  
+  .navigation-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navigation-menu li {
+    margin: 0 10px;
+  }
+  
+  .navigation-menu li a {
+    color: #f8f8f2;
+    text-decoration: none;
+  }
+  
+  .navigation-menu li a:hover {
+    color: #bd93f9;
+  }
+  

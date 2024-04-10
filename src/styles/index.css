@@ -1,0 +1,72 @@
+body {
+    color: #f8f8f2 !important;
+    background: #1d1b22 !important;
+    font-family: 'Fira Code', monospace !important;
+}
+
+a {
+    color: #b2aec0 !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease-in-out !important;
+}
+
+a:hover {
+    color: #bd93f9 !important;
+}
+
+h1 {
+    background: #282a36 !important;
+    color: #f8f8f2 !important;
+    padding: 10px 20px !important;
+    font-size: 24px !important;
+    border-radius: 8px !important;
+    margin-bottom: 20px !important;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    border: 2px solid #282a36;
+    border-radius: 8px;
+    background-color: #1d1b22;
+    color: #f8f8f2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #282a36;
+    color: #b2aec0;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #bd93f9;
+}
+
+input[type="text"],
+textarea {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    border: 2px solid #282a36;
+    border-radius: 8px;
+    background-color: #1d1b22;
+    color: #f8f8f2;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:hover,
+textarea:hover {
+    border-color: #b2aec0;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #bd93f9;
+    box-shadow: 0 0 0 2px #bd93f9;
+}
