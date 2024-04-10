@@ -1,17 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'; // Добавляем импорт Provider
+import store from './components/store'; // Импортируем ваше хранилище Redux
+import ArticleList from './components/ArticleList';
+import ArticleDetails from './components/ArticleDetails';
+import AddArticle from './components/AddArticle';
+import NotFound from './components/NotFound';
+const router = createBrowserRouter([
+  { path: "/", element: <ArticleList /> },
+  { path: "/article/:id", element: <ArticleDetails /> },
+  { path: "/add-article", element: <AddArticle /> },
+  { path: "*", element: <NotFound /> }
+]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    {/* Оберните ваше приложение в Provider и передайте ему ваше хранилище */}
+    <Provider store={store}>
+      <RouterProvider router={router}/> 
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
