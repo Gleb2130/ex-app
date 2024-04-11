@@ -8,10 +8,12 @@ import ArticleDetails from './components/ArticleDetails';
 import AddArticle from './components/AddArticle';
 import NotFound from './components/NotFound';
 import './styles/index.css';
+import Search from './components/Search';
 const router = createBrowserRouter([
   { path: "/", element: <ArticleList /> },
   { path: "/article/:id", element: <ArticleDetails /> },
   { path: "/add-article", element: <AddArticle /> },
+  {path:"/search-article/:search",element:<Search/>},
   { path: "*", element: <NotFound /> }
 ]);
 

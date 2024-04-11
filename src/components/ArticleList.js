@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
+import SearchBar from './SearchBar';
 
 const ArticleList = () => {
   const articles = useSelector(state => state.articles);
@@ -17,6 +18,7 @@ const ArticleList = () => {
   return (
     <div>
       <Navigation />
+      <SearchBar/>
       <h1>Article List</h1>
       {articles.map(article => (
         <div key={article.id}>

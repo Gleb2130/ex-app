@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {  useParams } from 'react-router-dom'; // Импортируем useParams
 import Navigation from './Navigation';
+import SearchBar from './SearchBar';
 
 const ArticleDetails = () => {
   const { id } = useParams(); // Получаем параметр id из URL
@@ -14,6 +15,7 @@ const ArticleDetails = () => {
     return (
       <div>
         <Navigation />
+        <SearchBar/>
         <h2>Статья не найдена</h2>
       </div>
     );
@@ -22,6 +24,7 @@ const ArticleDetails = () => {
   return (
     <div>
       <Navigation />
+      <SearchBar/>
       <h2>{article.title}</h2>
       <p>{article.body}</p>
     </div>

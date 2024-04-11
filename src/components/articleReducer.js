@@ -18,10 +18,17 @@ const articleSlice = createSlice({
     deleteArticle: (state, action) => {
       // Возвращаем новый массив, исключая удаленную статью
       return state.filter(article => article.id !== action.payload);
+    },
+    searchArticles: (state, action) => {
+      const searchTerm = action.payload.toLowerCase();
+      return state.filter(article => 
+        article.title.toLowerCase().includes(searchTerm) || 
+        article.body.toLowerCase().includes(searchTerm)
+      );
     }
   }
 });
 
-export const { addArticle, deleteArticle } = articleSlice.actions;
+export const { addArticle, deleteArticle ,searchArticles} = articleSlice.actions;
 export const selectArticles = state => state.articles;
 export default articleSlice.reducer;

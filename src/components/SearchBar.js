@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react';  
+import { Link } from 'react-router-dom';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-    onSearch(e.target.value);
-  };
 
   return (
     <div>
@@ -14,8 +10,11 @@ const SearchBar = ({ onSearch }) => {
         type="text"
         placeholder="Search articles..."
         value={searchTerm}
-        onChange={handleChange}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
+      <Link to={`/search-article/${searchTerm}`}>
+            <button>Find</button>
+          </Link>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addArticle } from './articleReducer';
 import Navigation from './Navigation';
+import SearchBar from './SearchBar';
 
 const AddArticle = () => {
   const [title, setTitle] = useState('');
@@ -24,6 +25,7 @@ const AddArticle = () => {
   return (
     <div>
       <Navigation />
+      <SearchBar/>
       <h1>Добавить новую статью</h1>
       <input
         type="text"
