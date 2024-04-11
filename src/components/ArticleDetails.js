@@ -5,6 +5,7 @@ import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import Comments from './Comments';
 import { addComment, addLastReadArticle } from './articleReducer';
+import LikeDislike from './LikeDislike'; // Импортируем компонент лайков и дизлайков
 
 const ArticleDetails = () => {
   const { id } = useParams();
@@ -18,8 +19,6 @@ const ArticleDetails = () => {
     }
   }, [dispatch, article]);
 
-
-  
   if (!article) {
     return (
       <div>
@@ -37,6 +36,8 @@ const ArticleDetails = () => {
       <h2>{article.title}</h2>
       <p>{article.body}</p>
       <p>{article.author}</p>
+      {/* Вставляем компонент лайков и дизлайков */}
+      <LikeDislike articleId={article.id} />
       <Comments articleId={article.id} articles={articles} addComment={(articleId, commentText) => dispatch(addComment({ articleId, commentText }))} />
     </div>
   );

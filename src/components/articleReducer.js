@@ -45,37 +45,35 @@ const articleSlice = createSlice({
       }
       state.lastReadArticles.unshift(articleId); 
     },
-    addLike: (state, action) => {
-      const articleId = action.payload;
+    toggleLikeDislike: (state, action) => {
+      const { articleId, type } = action.payload;
       const article = state.articles.find(article => article.id === articleId);
       if (article) {
-        article.likes++; 
-      }
-    },
-    addDislike: (state, action) => {
-      const articleId = action.payload;
-      const article = state.articles.find(article => article.id === articleId);
-      if (article) {
-        article.dislikes++; 
-      }
-    },
-    removeLike: (state, action) => {
-      const articleId = action.payload;
-      const article = state.articles.find(article => article.id === articleId);
-      if (article) {
-        article.likes--; 
-      }
-    },
-    removeDislike: (state, action) => {
-      const articleId = action.payload;
-      const article = state.articles.find(article => article.id === articleId);
-      if (article) {
-        article.dislikes--; 
+        const likeKey = `${articleId}_like`;
+        const dislikeKey = `${articleId}_dislike`;
+        const isAlreadyLiked = localStorage.getItem(likeKey);
+        const isAlreadyDisliked = localStorage.getItem(dislikeKey);
+
+        if (type === 'like' && !isAlreadyLiked) {
+          article.likes++;
+          localStorage.setItem(likeKey, true);
+          if (isAlreadyDisliked) {
+            article.dislikes--;
+            localStorage.removeItem(dislikeKey);
+          }
+        } else if (type === 'dislike' && !isAlreadyDisliked) {
+          article.dislikes++;
+          localStorage.setItem(dislikeKey, true);
+          if (isAlreadyLiked) {
+            article.likes--;
+            localStorage.removeItem(likeKey);
+          }
+        }
       }
     },
   }
 });
 
-export const { addArticle, deleteArticle, searchArticles, clearSearchResults, addComment ,addLastReadArticle,addDislike,addLike,removeLike,removeDislike} = articleSlice.actions;
+export const { addArticle, deleteArticle, searchArticles, clearSearchResults, addComment ,addLastReadArticle,toggleLikeDislike} = articleSlice.actions;
 export const selectArticles = state => state.articles.articles;
 export default articleSlice.reducer;
