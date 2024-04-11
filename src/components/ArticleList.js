@@ -5,7 +5,7 @@ import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 
 const ArticleList = () => {
-  const articles = useSelector(state => state.articles);
+  const articles = useSelector(state => state.articles.articles);
 
   if (!articles || articles.length === 0) {
     return (
@@ -18,8 +18,8 @@ const ArticleList = () => {
   return (
     <div>
       <Navigation />
-      <SearchBar/>
-      <h1>Article List</h1>
+      <SearchBar />
+      <h1>Список статей</h1>
       {articles.map(article => (
         <div key={article.id}>
           <Link to={`/article/${article.id}`}>

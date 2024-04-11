@@ -8,6 +8,7 @@ const Navigation = () => {
       <ul className="navigation-menu">
         <li><Link to="/">Главная</Link></li>
         <li><Link to="/add-article">Добавить статью</Link></li>
+        <li><Link to="/history">История</Link></li>
       </ul>
     </nav>
   );

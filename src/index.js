@@ -8,12 +8,15 @@ import ArticleDetails from './components/ArticleDetails';
 import AddArticle from './components/AddArticle';
 import NotFound from './components/NotFound';
 import './styles/index.css';
-import Search from './components/Search';
+import SearchArticles from './components/Search';
+import History from './components/History';
+
 const router = createBrowserRouter([
   { path: "/", element: <ArticleList /> },
   { path: "/article/:id", element: <ArticleDetails /> },
   { path: "/add-article", element: <AddArticle /> },
-  {path:"/search-article/:search",element:<Search/>},
+  {path:"/search-article/:search",element:<SearchArticles/>},
+  {path:"/history",element:<History/>},
   { path: "*", element: <NotFound /> }
 ]);
 

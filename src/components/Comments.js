@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 
-const Comments = () => {
-  const [comments, setComments] = useState([]);
+const Comments = ({ articleId, addComment, articles }) => {
+  const [commentText, setCommentText] = useState('');
+
+  const article = articles.find(article => article.id === articleId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newComment = e.target.comment.value;
-    setComments([...comments, newComment]);
-    e.target.comment.value = '';
+    if (commentText.trim() !== '') {
+      addComment(articleId, commentText);
+      setCommentText('');
+    }
   };
 
   return (
     <div>
-      <h3>Comments</h3>
+      <h3>Комментарии</h3>
       <ul>
-        {comments.map((comment, index) => (
+        {article && article.comments && article.comments.map((comment, index) => (
           <li key={index}>{comment}</li>
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="comment" placeholder="Add a comment" />
-        
-        <button type="submit">Submit</button>
+        <input 
+          type="text" 
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)} 
+          placeholder="Add a comment" 
+        />
+        <button type="submit">Отправить</button>
       </form>
     </div>
   );

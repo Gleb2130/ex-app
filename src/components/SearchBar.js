@@ -1,4 +1,4 @@
-import React, { useState } from 'react';  
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
@@ -8,13 +8,11 @@ const SearchBar = () => {
     <div>
       <input
         type="text"
-        placeholder="Search articles..."
+        placeholder="Поиск статей..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Link to={`/search-article/${searchTerm}`}>
-            <button>Find</button>
-          </Link>
+      <button><Link to={searchTerm !== '' ? `/search-article/${searchTerm}` : '/'}>Search</Link></button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { addArticle } from './articleReducer';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
+import { nanoid } from '@reduxjs/toolkit';
 
 const AddArticle = () => {
   const [title, setTitle] = useState('');
@@ -13,7 +14,7 @@ const AddArticle = () => {
 
   const handleAddArticle = () => {
     if (title.trim() && content.trim() && author.trim()) {
-      dispatch(addArticle({ id: Math.random(), title:title, body: content }));
+      dispatch(addArticle({ id:  nanoid(), title: title, body: content,author:author, comments: [],likes: 0, dislikes: 0 }));
       setTitle('');
       setContent('');
       setAuthor('');
@@ -44,7 +45,6 @@ const AddArticle = () => {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       /><br/>
-      {/* Используем Link для перехода на главную страницу после добавления статьи */}
       <Link to="/">
         <button onClick={handleAddArticle}>Добавить</button>
       </Link>
