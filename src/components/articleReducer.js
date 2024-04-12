@@ -1,11 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export const loadArticlesFromLocalStorage = () => {
+  return dispatch => {
+    console.log("Load Start...");
+    try {
+      const serializedState = localStorage.getItem('articles');
+      console.log("Load (serializedState):", serializedState);
+      if (serializedState !== null) {
+        const articles = JSON.parse(serializedState);
+        console.log("Load (articles):", articles);
+        articles.forEach(article => {
+          dispatch(addArticle(article));
+        });
+      }
+    } catch (error) {
+      console.error('Error loading articles from localStorage:', error);
+    }
+  };
+};
+
+const updateLocalStorage = (articles) => {
+  try {
+    localStorage.setItem('articles', JSON.stringify(articles));
+  } catch (error) {
+    console.error('Error updating articles in localStorage:', error);
+  }
+};
+
+
 const initialState = {
-  articles: [
-    { id: 1, title: "Article 1", body: "Body of article 1", comments: [],likes: 0, dislikes: 0 },
-    { id: 2, title: "Article 2", body: "Body of article 2", comments: [],likes: 0, dislikes: 0 },
-    { id: 3, title: "Article 3", body: "Body of article 3", comments: [],likes: 0, dislikes: 0 }
-  ],
+  articles: [],
   searchResults: [],
   lastReadArticles: []
 };
@@ -14,11 +38,17 @@ const articleSlice = createSlice({
   name: 'articles',
   initialState,
   reducers: {
+    updateArticles: (state, action) => {
+      state.articles = action.payload;
+    },
     addArticle: (state, action) => {
       state.articles.push(action.payload);
+      updateLocalStorage(state.articles);
     },
     deleteArticle: (state, action) => {
-      state.articles = state.articles.filter(article => article.id !== action.payload);
+      const idToDelete = action.payload;
+      state.articles = state.articles.filter(article => String(article.id) !== String(idToDelete));
+      updateLocalStorage(state.articles);
     },
     searchArticles: (state, action) => {
       const searchTerm = (action.payload || '').toLowerCase();
@@ -69,6 +99,7 @@ const articleSlice = createSlice({
             localStorage.removeItem(likeKey);
           }
         }
+        updateLocalStorage(state.articles);
       }
     },
   }

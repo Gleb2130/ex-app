@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import articleReducer from './articleReducer';
+import articleReducer, { loadArticlesFromLocalStorage } from './articleReducer';
 
 const store = configureStore({
   reducer: {
@@ -7,6 +7,6 @@ const store = configureStore({
   }
 });
 
-
+store.dispatch(loadArticlesFromLocalStorage());
 
 export default store;

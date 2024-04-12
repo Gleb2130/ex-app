@@ -1,15 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 
 const ArticleList = () => {
   const articles = useSelector(state => state.articles.articles);
+  
 
   if (!articles || articles.length === 0) {
     return (
       <div>
+        <Navigation />
+        <SearchBar />
         <h1>Список статей пуст</h1>
       </div>
     );
@@ -31,5 +34,6 @@ const ArticleList = () => {
     </div>
   );
 };
+
 
 export default ArticleList;

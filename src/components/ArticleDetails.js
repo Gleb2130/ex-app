@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import Comments from './Comments';
-import { addComment, addLastReadArticle } from './articleReducer';
-import LikeDislike from './LikeDislike'; // Импортируем компонент лайков и дизлайков
+import { addComment, addLastReadArticle, deleteArticle } from './articleReducer';
+import LikeDislike from './LikeDislike'; 
 
 const ArticleDetails = () => {
   const { id } = useParams();
@@ -19,12 +19,17 @@ const ArticleDetails = () => {
     }
   }, [dispatch, article]);
 
+  const handleSubmit = () =>{
+    dispatch(deleteArticle(id));
+  }
+  
+  
   if (!article) {
     return (
       <div>
         <Navigation />
         <SearchBar />
-        <h2>Статья не найдена</h2>
+        <h2>Статья не найдена или была удалина</h2>
       </div>
     );
   }
@@ -36,9 +41,11 @@ const ArticleDetails = () => {
       <h2>{article.title}</h2>
       <p>{article.body}</p>
       <p>{article.author}</p>
-      {/* Вставляем компонент лайков и дизлайков */}
       <LikeDislike articleId={article.id} />
       <Comments articleId={article.id} articles={articles} addComment={(articleId, commentText) => dispatch(addComment({ articleId, commentText }))} />
+      <Link to="/">
+      <button onClick={handleSubmit}>Удалить</button>
+      </Link>
     </div>
   );
 };

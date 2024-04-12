@@ -14,7 +14,7 @@ const AddArticle = () => {
 
   const handleAddArticle = () => {
     if (title.trim() && content.trim() && author.trim()) {
-      dispatch(addArticle({ id:  nanoid(), title: title, body: content,author:author, comments: [],likes: 0, dislikes: 0 }));
+      dispatch(addArticle({ id:  nanoid(8), title: title, body: content,author:author, comments: [],likes: 0, dislikes: 0 }));
       setTitle('');
       setContent('');
       setAuthor('');

@@ -1,5 +1,3 @@
-// LikeDislike.js
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLikeDislike } from './articleReducer';
