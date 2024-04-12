@@ -14,7 +14,7 @@ const Comments = ({ articleId, addComment, articles }) => {
   };
 
   return (
-    <div>
+    <>
       <h3>Комментарии</h3>
       <ul>
         {article && article.comments && article.comments.map((comment, index) => (
@@ -30,7 +30,7 @@ const Comments = ({ articleId, addComment, articles }) => {
         />
         <button type="submit">Отправить</button>
       </form>
-    </div>
+      </>
   );
 };
 

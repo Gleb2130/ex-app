@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import Comments from './Comments';
 import { addComment, addLastReadArticle, deleteArticle } from './articleReducer';
 import LikeDislike from './LikeDislike'; 
+import '../styles/ArticleDetails.css'
 
 const ArticleDetails = () => {
   const { id } = useParams();
@@ -35,19 +36,38 @@ const ArticleDetails = () => {
   }
 
   return (
-    <div>
+    <div className="article-details-container">
       <Navigation />
       <SearchBar />
-      <h2>{article.title}</h2>
-      <p>{article.body}</p>
-      <p>{article.author}</p>
-      <LikeDislike articleId={article.id} />
+      <br/>
+      <div className="article-info">
+        <h2>{article.title}</h2>
+        <p>{article.body}</p>
+        <p>{article.author}</p>
+      
+      <div className="likes-container" align="right">
+        <LikeDislike articleId={article.id} />
+      </div>
+      </div>
+      <div className="comments-container">
       <Comments articleId={article.id} articles={articles} addComment={(articleId, commentText) => dispatch(addComment({ articleId, commentText }))} />
+      </div>
       <Link to="/">
-      <button onClick={handleSubmit}>Удалить</button>
+        <button onClick={handleSubmit} className="delete-button">Удалить</button>
       </Link>
     </div>
   );
 };
 
 export default ArticleDetails;
+
+
+
+
+
+
+
+
+
+
+

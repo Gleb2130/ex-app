@@ -5,7 +5,7 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div>
+    <div align = "center">
       <input
         type="text"
         placeholder="Поиск статей..."

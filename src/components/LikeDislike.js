@@ -23,10 +23,8 @@ const LikeDislike = ({ articleId }) => {
 console.log("isLiked:",isLiked,"isDisliked:",isDisliked)
   return (
     <div>
-      <button onClick={handleLike}><FontAwesomeIcon icon={isLiked ? solidThumbsUp : regularThumbsUp} /></button>
-      <span>{article.likes}</span>
-      <button onClick={handleDislike}><FontAwesomeIcon icon={isDisliked ? solidThumbsDown : regularThumbsDown} /></button>
-      <span>{article.dislikes}</span>
+      <button onClick={handleLike}><FontAwesomeIcon icon={isLiked ? solidThumbsUp : regularThumbsUp} />{article.likes}</button>
+      <button onClick={handleDislike}><FontAwesomeIcon icon={isDisliked ? solidThumbsDown : regularThumbsDown} />{article.dislikes}</button>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import {  useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
+import '../styles/ArticleList.css';
 
 const ArticleList = () => {
   const articles = useSelector(state => state.articles.articles);
@@ -23,14 +24,16 @@ const ArticleList = () => {
       <Navigation />
       <SearchBar />
       <h1>Список статей</h1>
-      {articles.map(article => (
-        <div key={article.id}>
-          <Link to={`/article/${article.id}`}>
-            <h2>{article.title}</h2>
-          </Link>
-          <p>{article.body}</p>
-        </div>
-      ))}
+      <div className="article-grid">
+        {articles.map(article => (
+          <div key={article.id} className="article-cell">
+            <Link to={`/article/${article.id}`}>
+              <h2>{article.title}</h2>
+            </Link>
+            <p>{article.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

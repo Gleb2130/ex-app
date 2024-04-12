@@ -1,0 +1,50 @@
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .article-cell {
+    background-color: #282a36;
+    border-radius: 8px;
+    padding: 20px;
+    transition: background-color 0.3s ease; 
+  }
+  
+  .article-cell:hover {
+    background-color: #44475a;
+  }
+  
+  .article-cell h2 {
+    color: #f8f8f2;
+    margin-bottom: 10px;
+  }
+  
+  .article-cell p {
+    color: #f8f8f2;
+    margin-bottom: 10px;
+  }
+  
+  .article-cell a {
+    color: #bd93f9;
+  }
+  
+  .article-cell a:hover {
+    color: #6272a4;
+  }
+  
+  .article-cell button {
+    background-color: #ff79c6;
+    color: #282a36;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .article-cell button:hover {
+    background-color: #ff55a3;
+  }
+  
