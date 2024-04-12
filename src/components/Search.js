@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 import { searchArticles } from './articleReducer';
+import '../styles/ArticleList.css';
 
 const SearchArticles = () => {
   const { search } = useParams();
@@ -26,11 +27,12 @@ const SearchArticles = () => {
       <Navigation />
       <SearchBar />
       <h1>Результаты поиска</h1>
+      <div className="article-grid">
       {filteredArticles.length === 0 ? (
         <p>Результаты не найдены</p>
       ) : (
         filteredArticles.map(article => (
-          <div key={article.id}>
+          <div key={article.id} className="article-cell">
             <Link to={`/article/${article.id}`}>
               <h2>{article.title}</h2>
             </Link>
@@ -38,6 +40,7 @@ const SearchArticles = () => {
           </div>
         ))
       )}
+      </div>
     </div>
   );
 };

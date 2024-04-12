@@ -33,18 +33,22 @@ const AddArticle = () => {
         placeholder="Заголовок"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-      /><br/>
+      />
+      <br/>
+      <br/>
       <textarea
         placeholder="Текст статьи"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-      /><br/>
+      />
+      <br/>
       <input
         type="text"
         placeholder="Автор"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
-      /><br/>
+      />
+      <br/>
       <Link to="/">
         <button onClick={handleAddArticle}>Добавить</button>
       </Link>
