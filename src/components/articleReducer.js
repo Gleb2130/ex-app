@@ -2,13 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const loadArticlesFromLocalStorage = () => {
   return dispatch => {
-    console.log("Load Start...");
     try {
       const serializedState = localStorage.getItem('articles');
-      console.log("Load (serializedState):", serializedState);
       if (serializedState !== null) {
         const articles = JSON.parse(serializedState);
-        console.log("Load (articles):", articles);
         articles.forEach(article => {
           dispatch(addArticle(article));
         });
@@ -65,6 +62,7 @@ const articleSlice = createSlice({
       const article = state.articles.find(article => article.id === articleId);
       if (article) {
         article.comments.push(commentText);
+        updateLocalStorage(state.articles);
       }
     },
     addLastReadArticle: (state, action) => {
@@ -78,12 +76,13 @@ const articleSlice = createSlice({
     toggleLikeDislike: (state, action) => {
       const { articleId, type } = action.payload;
       const article = state.articles.find(article => article.id === articleId);
+      
       if (article) {
         const likeKey = `${articleId}_like`;
         const dislikeKey = `${articleId}_dislike`;
-        const isAlreadyLiked = localStorage.getItem(likeKey);
-        const isAlreadyDisliked = localStorage.getItem(dislikeKey);
-
+        const isAlreadyLiked = localStorage.getItem(likeKey) === 'true'; 
+        const isAlreadyDisliked = localStorage.getItem(dislikeKey) === 'true';
+    
         if (type === 'like' && !isAlreadyLiked) {
           article.likes++;
           localStorage.setItem(likeKey, true);
@@ -102,6 +101,7 @@ const articleSlice = createSlice({
         updateLocalStorage(state.articles);
       }
     },
+    
   }
 });
 
